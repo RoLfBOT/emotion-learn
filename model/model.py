@@ -1,6 +1,9 @@
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Conv2D, Dropout, MaxPooling2D
 import os
+from tensorflow.keras.callbacks import TensorBoard
+import time
+from data.data_preprocess import Dataset
 
 class Model:
     def __init__(self, epochs):
@@ -8,6 +11,7 @@ class Model:
         self.batch_size = 64
         self.epochs = epochs
         self.verbose = 2
+        self.tensorboard = TensorBoard(log_dir='logs/{}'.format(time.time()))
 
     def build_model(self):
         model = Sequential()
@@ -59,7 +63,10 @@ class Model:
             images, labels,
             batch_size=self.batch_size,
             verbose=self.verbose,
-            epochs=self.epochs
+            epochs=self.epochs,
+            callbacks=[self.tensorboard]
         )
 
-        self.model.save(os.path.join(os.path.dirname(__file__), 'model/emotion.h5'))
+        self.model.save(os.path.join(os.path.dirname(__file__), 'model/emotion{}.h5'.format(time.time())))
+
+    
