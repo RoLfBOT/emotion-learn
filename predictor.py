@@ -29,6 +29,6 @@ class Predictor:
 
 if __name__ == "__main__":
     img = np.array(Image.open('./data/test-images/happy.jpeg')).astype('float32')
-
     predictor = Predictor()
+
     print(predictor.predict(img))

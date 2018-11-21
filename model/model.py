@@ -67,6 +67,6 @@ class Model:
             callbacks=[self.tensorboard]
         )
 
-        self.model.save(os.path.join(os.path.dirname(__file__), 'model/emotion{}.h5'.format(time.time())))
+        self.model.save(os.path.join(os.path.dirname(__file__), 'model', 'emotion{}.h5'.format(time.time())))
 
     
