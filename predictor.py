@@ -27,8 +27,8 @@ class Predictor:
         with self.graph.as_default():
             return self.emotion_dict[np.argmax(self.model.predict(image))]
 
-if __name__ == "__main__":
-    img = np.array(Image.open('./data/test-images/happy.jpeg')).astype('float32')
-    predictor = Predictor()
+# if __name__ == "__main__":
+#     img = np.array(Image.open('./data/test-images/happy.jpeg')).astype('float32')
+#     predictor = Predictor()
 
-    print(predictor.predict(img))
+#     print(predictor.predict(img))
