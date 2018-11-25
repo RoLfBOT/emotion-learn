@@ -6,7 +6,7 @@ from PIL import Image
 
 class Predictor:
     def __init__(self):
-        self.model = load_model('./model/emotion.h5')
+        self.model = load_model('./model/saved_models/emotion1543161952.3752954.h5')
         self.graph = tf.get_default_graph()
         self.img_height = 48
         self.img_width = 48
@@ -21,7 +21,7 @@ class Predictor:
         }
 
     def predict(self, image):
-        image = np.expand_dims(cv2.resize(image, (self.img_height, self.img_width)), axis=0)
+        image = np.expand_dims(np.expand_dims(cv2.resize(image, (self.img_height, self.img_width)), -1), 0).astype('float32')
         image /= 255.0
 
         with self.graph.as_default():
